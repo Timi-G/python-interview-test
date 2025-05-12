@@ -25,7 +25,7 @@ def calculate_tax(request: TaxRequest) -> TaxResponse:
     taxable = request.taxable
     tax_amount = 0
 
-    # loop through rates to get the amount that is taxable (taxable) and tax to be paid (tax_amount)
+    # loop through tax_rates dictionary to get the amount that is taxable (taxable)
     for amount,rate in request.tax_rate.items():
         taxable = taxable - amount
         # tax calculation when amount is above 1000000 (please note that it is the excess above 1000000 that is taxed)
