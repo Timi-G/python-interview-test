@@ -62,12 +62,12 @@ def test_calculate_tax():
 def test_calculate_tax_2():
     """Test with pytest"""
 
-    test_case_1 = TaxRequest(500000,50000)
+    test_case_2 = TaxRequest(500000,50000)
 
-    response_1 = calculate_tax(test_case_1)
+    response_2 = calculate_tax(test_case_2)
 
-    assert response_1.tax_amount == 50000
+    assert response_2.tax_amount == 50000
 
-    assert response_1.gross_pay == 500000
+    assert response_2.gross_pay == 500000
 
-    assert response_1.net_pay == 450000
+    assert response_2.net_pay == 450000
