@@ -72,3 +72,16 @@ def test_calculate_tax_2():
     assert response_2.gross_pay == 500000
 
     assert response_2.net_pay == 470000
+
+def test_calculate_tax_3():
+    """Test with pytest"""
+
+    test_case_3 = TaxRequest(10000000,500000)
+
+    response_3 = calculate_tax(test_case_3)
+
+    assert response_3.tax_amount == 1595000
+
+    assert response_3.gross_pay == 10000000
+
+    assert response_3.net_pay == 8405000
