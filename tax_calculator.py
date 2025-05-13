@@ -5,10 +5,10 @@ class TaxRequest:
     # TODO: Implement this class with appropriate fields
     tax_rate = {200000: 0, 500000: 10, 300000: 15, 1000000: 20}
     
-    def __init__(self,gross_pay: float, bonus: float):
-        self.gross_pay = gross_pay
+    def __init__(self,salary: float, bonus: float):
+        self.salary = salary
         self.bonus = bonus
-        self.taxable = gross_pay - bonus
+        self.gross_pay = salary + bonus
 
 
 class TaxResponse:
@@ -20,7 +20,7 @@ class TaxResponse:
 def calculate_tax(request: TaxRequest) -> TaxResponse:
     # TODO: Implement the tax calculation logic
     gross = request.gross_pay
-    taxable = request.taxable
+    taxable = request.salary
     tax_amount = 0
 
     amount_levels=list(request.tax_rate)
@@ -55,9 +55,9 @@ def test_calculate_tax():
 
     assert response_1.tax_amount == 0
 
-    assert response_1.gross_pay == 0
+    assert response_1.gross_pay == 50000
 
-    assert response_1.net_pay == 0
+    assert response_1.net_pay == 50000
 
 
 def test_calculate_tax_2():
@@ -80,8 +80,8 @@ def test_calculate_tax_3():
 
     response_3 = calculate_tax(test_case_3)
 
-    assert response_3.tax_amount == 1595000
+    assert response_3.tax_amount == 1695000
 
-    assert response_3.gross_pay == 10000000
+    assert response_3.gross_pay == 10500000
 
-    assert response_3.net_pay == 8405000
+    assert response_3.net_pay == 8805000
