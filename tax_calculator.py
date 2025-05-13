@@ -33,13 +33,13 @@ def calculate_tax(request: TaxRequest) -> TaxResponse:
                 tax_amount += taxable*(rate/100)
             break
 
+        # stop when pay is no longer taxable
+        if taxable <= 0:
+            tax_amount += (taxable+amount)*(rate/100) if rate > 0 else 0
+            break
         # calculate tax amount using provided tax rate
         tax_amount += amount*(rate/100) if rate > 0 else 0
 
-        # stop when pay is no longer taxable
-        if taxable <= 0:
-            break
-    
     TaxResponse.gross_pay = gross
     TaxResponse.tax_amount = tax_amount
     TaxResponse.net_pay = gross - tax_amount
@@ -63,12 +63,12 @@ def test_calculate_tax():
 def test_calculate_tax_2():
     """Test with pytest"""
 
-    test_case_2 = TaxRequest(500000,50000)
+    test_case_2 = TaxRequest(500000,0)
 
     response_2 = calculate_tax(test_case_2)
 
-    assert response_2.tax_amount == 50000
+    assert response_2.tax_amount == 30000
 
     assert response_2.gross_pay == 500000
 
-    assert response_2.net_pay == 450000
+    assert response_2.net_pay == 470000
