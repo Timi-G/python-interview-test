@@ -46,9 +46,12 @@ def calculate_tax(request: TaxRequest) -> TaxResponse:
     return TaxResponse
 
 
+'''
+Instantiate Tax Request with positional parameters like this --> TaxRequest(salary, bonus)
+'''
 def test_calculate_tax():
     """Test with pytest"""
-
+    
     test_case_1 = TaxRequest(0,50000)
 
     response_1 = calculate_tax(test_case_1)
